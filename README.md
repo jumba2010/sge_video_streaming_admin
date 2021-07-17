@@ -1,57 +1,17 @@
-# Aulas Online
+INTRODUCTION
+------------
+The admin module for the  video Streming app that allows video conferencing and video chat and sharing embebed content.
+This project uses mongdb and is integrated with daily co.
 
-This project is initialized with [Aulas Online](https://pro.ant.design). Follow is the quick guide for how to use.
+REQUIREMENTS
+------------
+This projects requires the following tecnologies:
 
-## Environment Prepare
+ * Nodejs 8 or later
 
-Install `node_modules`:
 
-```bash
-npm install
-```
 
-or
-
-```bash
-yarn
-```
-
-## Provided Scripts
-
-Aulas Online provides some useful script to help you quick start and build with web project, code style check and test.
-
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+MAINTAINERS
+-----------
+Current maintainers:
+ * Judiao Mbaua (https://www.linkedin.com/in/judiao-mbaua-56b39946/)
