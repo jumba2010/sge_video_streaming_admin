@@ -22,7 +22,7 @@ const plugins = [
         // default false
         enable: true,
         // default zh-CN
-        default: 'en-US',
+        default: 'pt-BR',
         // default true, when it is true, will use `navigator.language` overwrite default
         baseNavigator: true,
       },
@@ -113,7 +113,7 @@ export default {
             },
             
             {
-              path: '/course/create',
+              path: '/admin/course/create',
               name: 'create',
               icon: 'smile',
               component: './course/create',
@@ -121,7 +121,7 @@ export default {
             },
 
             {
-              path: '/course/edit/:coursename',
+              path: '/admin/course/edit/:coursename',
               name: 'edit',
               icon: 'smile',
               component: './course/edit',

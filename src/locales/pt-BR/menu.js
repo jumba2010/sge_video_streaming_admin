@@ -1,7 +1,8 @@
 export default {
-  'menu.welcome': 'Cursos',
+  'menu.welcome': 'Aulas',
   'menu.more-blocks': 'More Blocks',
-  'menu.home': 'Início',
+  'menu.create':'Adicionar Aula',
+  'menu.edit':'Editar Aula',
   'menu.login': 'Login',
   'menu.admin': 'Admin',
   'menu.admin.sub-page': 'Sub-Page',

@@ -66,7 +66,7 @@ class ListStudent extends React.Component {
 
   editStudent(record) {
     let normalizedName=record.name.split(" ").join("").toLowerCase()
-    this.props.history.push('/course/edit/' + normalizedName);
+    this.props.history.push('/admin/course/edit/' + normalizedName);
   }
 
   handleAnull(record) {
@@ -94,15 +94,15 @@ class ListStudent extends React.Component {
       let newData=this.state.data.filter(d=>d._id!==this.state.id);
       this.setState({ visible: false ,data:newData});
       notification.success({
-        description: 'Course deleted Sucessfully',
-        message: 'Course deleted Sucessfully',
+        description: 'Aula adicionada com sucesso',
+        message: 'Aula adicionada com sucesso',
       });
     })
     .catch(function(error) {
   
       notification.error({
         description: error.message,
-        message: 'Error processing the request',
+        message: 'Erro ao processar o pedido',
       });
     });
 
@@ -178,8 +178,8 @@ class ListStudent extends React.Component {
   render() {
 
     const columns = [
-      { title: 'Name', dataIndex: 'name', key: 'name', render: text => <a onClick={()=>{let normalizedName=text.split(" ").join("").toLowerCase()
-      this.props.history.push('/course/edit/' + normalizedName);}}>{text}</a> },
+      { title: 'Designação', dataIndex: 'name', key: 'name', render: text => <a onClick={()=>{let normalizedName=text.split(" ").join("").toLowerCase()
+      this.props.history.push('/admin/course/edit/' + normalizedName);}}>{text}</a> },
       { title: 'Link da Aula', dataIndex: 'link', key: 'link' },
     
       {
@@ -187,9 +187,9 @@ class ListStudent extends React.Component {
         key: 'operation',
         render: (text, record) => (
           <span>
-            <a onClick={this.editStudent.bind(this, record)}>Edit</a>
+            <a onClick={this.editStudent.bind(this, record)}>Editar</a>
             <Divider type="vertical"></Divider>
-            <a onClick={this.handleAnull.bind(this, record)}>Delete</a>
+            <a onClick={this.handleAnull.bind(this, record)}>Remover</a>
           </span>
         ),
       },
@@ -212,7 +212,7 @@ class ListStudent extends React.Component {
                   <Button
                     icon="plus"
                     type="primary"
-                    onClick={() => this.props.history.push('/course/create')}
+                    onClick={() => this.props.history.push('/admin/course/create')}
                   >
                    Adicionar Aula
                   </Button>
@@ -236,20 +236,20 @@ class ListStudent extends React.Component {
         </Card>
         <Modal
 visible={this.state.visible}
-title={  <Alert message='Are you sure you want to delete this course?' description="This action is inreversible." type="error" showIcon />}
+title={  <Alert message='Tem a certeza que deseja remover esta aula?' description="Esta acção é irreversível." type="error" showIcon />}
         footer={[
             <Button key="back" onClick={()=>{this.setState({visible:false})}}>
-             Cancel
+             Cancelar
             </Button>,
             <Button key="submit" type="danger" disabled={!this.state.name || this.state.courseName.toLowerCase()!=this.state.name.toLowerCase()}  onClick={this.confirmCourseDeletion}>
-              Delete
+              Remover
             </Button>,
           ]}
           closable={false}
           onCancel={()=>{this.setState({visible:false})}}
         >
        <Form {...layout} > 
-       <Text type="secondary" >Confirm by typing the Designação da Aula below</Text>
+       <Text type="secondary" >Confirm by typing the course name below</Text>
         <FormItem
                  
                  label='Name'

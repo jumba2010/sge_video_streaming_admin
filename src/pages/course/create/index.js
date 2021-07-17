@@ -22,13 +22,13 @@ const { TextArea } = Input;
 
 import styles from './index.less';
 
-
 function URLReplacer(str){
   let match = str.match(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig);
   let final=match.map(url=>url
   )
   return final;
 }
+
 const steps = [
   {
     title: 'Detalhes da Aula',
@@ -51,7 +51,6 @@ class Student extends React.Component {
 
     this.state = {
       current: 0,
-      id:'',
       loading: false,
       name: '',
       url: '',
@@ -61,13 +60,11 @@ class Student extends React.Component {
   }
 
   validateName(rule,value){
-let parameter=this.props.match.params.coursename;
 return new Promise(async (resolve,reject)=>{
 let normalizedName=value.split(" ").join("").toLowerCase()
 let data= await api.get("/api/course/"+normalizedName);
-
-if(data.data.length!=0 && normalizedName!=parameter){
-  await reject('A Aula está repetida');
+if(data.data.length!=0){
+  await reject('Já existe outra aula com a mesma Designação');
 }
 else{
   await resolve()
@@ -80,16 +77,6 @@ else{
     if(evt.target.name=='name'){
       this.setState({ link:baseURL+'/'+evt.target.value}); 
     }
-  }
-
-  componentDidMount() {
-   let param=this.props.match.params.coursename;
-  
-   api.get("/api/course/"+param).then((response)=>{
-    let data=response.data[0];
-    this.setState({name:data.name,url:data.url,link:data.link,id:data._id})
-   });
-   
   }
 
   handleSubmit = e => {
@@ -105,10 +92,9 @@ else{
     window.scrollTo(0, 0);
     this.setState({ issaving: true });
 
-    const {name,url,link,id} = this.state;
-
+    const {name,url,link} = this.state;
      api
-      .put('/api/course/'+id, {
+      .post('/api/course', {
         name:name,
         link:link,
         url:url,
@@ -123,7 +109,7 @@ else{
     
         notification.error({
           description: error.message,
-          message: 'Erro ao processar requisição',
+          message: 'Erro ao processar seu pedido',
         });
       });
 
@@ -132,7 +118,7 @@ else{
 
   next1() {
     this.props.form.validateFieldsAndScroll((err, values) => {});
-    console.log(this.state)
+    
     if (this.state.name && this.state.url && this.state.link) {
       const current = this.state.current + 1;
       this.setState({ current });
@@ -172,10 +158,10 @@ else{
     const extra = (
       <>
         <Button type="primary" onClick={this.restart.bind(this)}>
-         Cadastrar nova Aula
+          Adicionar outra Aula
         </Button>
         <Button onClick={() => this.props.history.push('/Welcome')}>
-         Lista de Aulas
+          Lista de Aulas
         </Button>
       </>
     );
@@ -210,10 +196,8 @@ else{
                     <Form.Item
                       label={
                         <span>
-                          Designação da Aula&nbsp;
-                          <Tooltip title="Designação da Aula">
-                            <Icon type="question-circle-o" />
-                          </Tooltip>
+                          Designação da Aula
+                         
                         </span>
                       }
                     >
@@ -222,7 +206,7 @@ else{
                         rules: [
                           {
                             required: true,
-                            message: 'Informe Designação da Aula!',
+                            message: 'A Designação da Aula é obrigatória',
                             whitespace: true,
                           },
                       {
@@ -235,13 +219,13 @@ else{
                       )}
                     </Form.Item>
                   
-                    <Form.Item label="Link da Aula ">
+                    <Form.Item label="Link da Aula">
                       {getFieldDecorator('link', {
                         initialValue: `${this.state.link}`,
                         rules: [
                           {
                             required: true,
-                            message: 'Informe o Link da Aula',
+                            message: 'O Link da Aula é obrigatório',
                           },
                         ],
                       })(
@@ -253,13 +237,13 @@ else{
                           onChange={this.handleChangeInput}
                         />)}
                     </Form.Item>
-                    <Form.Item label={<span>Conteúdo da Aula</span>}>
+                    <Form.Item label={<span>URL do Conteúdo</span>}>
                       {getFieldDecorator('url', {
                         initialValue: `${this.state.url}`,
                         rules: [
                           {
                             required: true,
-                            message: 'Introduza o Conteúdo da Aula!',
+                            message: 'O link do conteúdo é obrigatório!',
                             whitespace: true,
                           },
                         ],
@@ -279,7 +263,7 @@ else{
                         style={{ marginLeft: 180 }}
                         onClick={() => this.restart()}
                       >
-                        Cancel
+                        Cancelar
                       </Button>
                       <Button
                         style={{ marginLeft: 8 }}
@@ -287,7 +271,7 @@ else{
                         htmlType="submit"
                         onClick={() => this.next1()}
                       >
-                        Next
+                        Próximo
                       </Button>
                     </Form.Item>
                   </Form>
@@ -305,7 +289,7 @@ else{
                 />
 
                 <Descriptions
-                  title="Course details"
+                  title="Detalhes da Aula"
                   style={{ marginBottom: 10, marginTop: 32 }}
                   column={1}
                   className={styles.information}
@@ -316,14 +300,14 @@ else{
                     {this.state.link}
                   </Descriptions.Item>
 
-                  <Descriptions.Item label="Conteúdo da Aula">
+                  <Descriptions.Item label="URL do Conteúdo">
                     {this.state.url}
                   </Descriptions.Item>
                 </Descriptions>
              
                 <Form.Item>
                   <Button style={{ marginLeft: 180 }} onClick={() => this.prev()}>
-                    Previous
+                    Anterior
                   </Button>
 
                   <Button
@@ -333,7 +317,7 @@ else{
                     htmlType="submit"
                     onClick={() => this.confirmTransaction()}
                   >
-                    Confirm
+                    Confirmar
                   </Button>
                 </Form.Item>
               </Form>
@@ -342,8 +326,8 @@ else{
               <Form {...formItemLayout} style={{ padding: '50px 0' }}>
                 <Result
                   status="success"
-                  title="Aula Cadastrada com Sucesso!"
-                  subTitle="Aula Cadastrada com Sucesso!"
+                  title="Aula Cadastrada com sucesso!"
+                  subTitle="Aula Cadastrada com sucesso!"
                   extra={extra}
                 />
                 <Form.Item></Form.Item>

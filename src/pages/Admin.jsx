@@ -5,7 +5,7 @@ export default () => (
   <PageHeaderWrapper content=" 这个页面只有 admin 权限才能查看">
     <Card>
       <Alert
-        message="Welcome to Aulas Online"
+        message="Bem vindo"
         type="success"
         showIcon
         banner
@@ -20,7 +20,7 @@ export default () => (
           textAlign: 'center',
         }}
       >
-        <Icon type="smile" theme="twoTone" />Aulas Online{' '}
+        <Icon type="smile" theme="twoTone" />Course App{' '}
         <Icon type="heart" theme="twoTone" twoToneColor="#eb2f96" /> You
       </Typography.Title>
     </Card>

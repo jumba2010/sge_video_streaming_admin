@@ -168,10 +168,10 @@ else{
     const extra = (
       <>
         <Button type="primary" onClick={this.restart.bind(this)}>
-         Cadastrar Nova aula
+          Create New Course
         </Button>
         <Button onClick={() => this.props.history.push('/Welcome')}>
-         Lista de Aulas
+          List all Courses
         </Button>
       </>
     );
@@ -206,8 +206,8 @@ else{
                     <Form.Item
                       label={
                         <span>
-                          Designação da Aula&nbsp;
-                          <Tooltip title="Designação da Aula">
+                          Course name&nbsp;
+                          <Tooltip title="Course Name">
                             <Icon type="question-circle-o" />
                           </Tooltip>
                         </span>
@@ -218,7 +218,7 @@ else{
                         rules: [
                           {
                             required: true,
-                            message: 'Please provide the Designação da Aula!',
+                            message: 'Please provide the course name!',
                             whitespace: true,
                           },
                       {
@@ -231,7 +231,7 @@ else{
                       )}
                     </Form.Item>
                   
-                    <Form.Item label="Link da Aula ">
+                    <Form.Item label="Course Link ">
                       {getFieldDecorator('link', {
                         initialValue: `${this.state.link}`,
                         rules: [
@@ -249,13 +249,13 @@ else{
                           onChange={this.handleChangeInput}
                         />)}
                     </Form.Item>
-                    <Form.Item label={<span>Conteúdo da Aula</span>}>
+                    <Form.Item label={<span>Content URL</span>}>
                       {getFieldDecorator('url', {
                         initialValue: `${this.state.url}`,
                         rules: [
                           {
                             required: true,
-                            message: 'Please provide the Conteúdo da Aula!',
+                            message: 'Please provide the Content URL!',
                             whitespace: true,
                           },
                         ],
@@ -306,13 +306,13 @@ else{
                   column={1}
                   className={styles.information}
                 >
-                  <Descriptions.Item label="Designação da Aula">{this.state.name}</Descriptions.Item>
+                  <Descriptions.Item label="Course Name">{this.state.name}</Descriptions.Item>
                  
-                  <Descriptions.Item label="Link da Aula">
+                  <Descriptions.Item label="Course Link">
                     {this.state.link}
                   </Descriptions.Item>
 
-                  <Descriptions.Item label="Conteúdo da Aula">
+                  <Descriptions.Item label="Content URL">
                     {this.state.url}
                   </Descriptions.Item>
                 </Descriptions>

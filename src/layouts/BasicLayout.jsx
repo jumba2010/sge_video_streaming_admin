@@ -1,5 +1,5 @@
 /**
- * Aulas Online v4 use `@ant-design/pro-layout` to handle Layout.
+ * COURSE APP v4 use `@ant-design/pro-layout` to handle Layout.
  * You can view component api by:
  * https://github.com/ant-design/ant-design-pro-layout
  */
@@ -52,7 +52,7 @@ const defaultFooterDom = (
         blankTarget: true,
       },
       {
-        key: 'Aulas Online',
+        key: 'Aulas Online1',
         title: 'Aulas Online',
         href: '#',
         blankTarget: true,

@@ -43,7 +43,7 @@ const UserLayout = (props) => {
                 <span className={styles.title}>Aulas Online</span>
               </Link>
             </div>
-            <div className={styles.desc}>Entre com suas credencias</div>
+            <div className={styles.desc}>Entre com as suas credencias</div>
           </div>
           {children}
         </div>

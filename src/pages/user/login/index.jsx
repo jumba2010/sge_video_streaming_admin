@@ -93,9 +93,7 @@ class Login extends Component {
               loginType === 'account' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({
-                  id: 'user-login.login.message-invalid-credentials',
-                }),
+                'UserName e Password inválidos',
               )}
             <UserName
               name="userName"
@@ -105,9 +103,7 @@ class Login extends Component {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({
-                    id: 'user-login.userName.required',
-                  }),
+                  message:'userName é obrigatório',
                 },
               ]}
             />
@@ -119,9 +115,7 @@ class Login extends Component {
               rules={[
                 {
                   required: true,
-                  message: formatMessage({
-                    id: 'user-login.password.required',
-                  }),
+                  message: 'Password é obrigatório',
                 },
               ]}
               onPressEnter={(e) => {
@@ -136,7 +130,7 @@ class Login extends Component {
        
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="user-login.login.remember-me" />
+              Lembrar-me
             </Checkbox>
             <a
               style={{
@@ -144,7 +138,7 @@ class Login extends Component {
               }}
               href=""
             >
-              <FormattedMessage id="user-login.login.forgot-password" />
+              Esqueceu a Senha
             </a>
           </div>
           <Submit loading={submitting}>
